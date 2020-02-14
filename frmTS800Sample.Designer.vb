@@ -332,7 +332,7 @@ Partial Class frmTS800Sample
         'lblSdkVersion
         '
         Me.lblSdkVersion.AutoSize = True
-        Me.lblSdkVersion.Location = New System.Drawing.Point(23, 12)
+        Me.lblSdkVersion.Location = New System.Drawing.Point(4, 12)
         Me.lblSdkVersion.Name = "lblSdkVersion"
         Me.lblSdkVersion.Size = New System.Drawing.Size(69, 12)
         Me.lblSdkVersion.TabIndex = 7
@@ -340,7 +340,7 @@ Partial Class frmTS800Sample
         '
         'btnConnect
         '
-        Me.btnConnect.Location = New System.Drawing.Point(460, 33)
+        Me.btnConnect.Location = New System.Drawing.Point(479, 33)
         Me.btnConnect.Name = "btnConnect"
         Me.btnConnect.Size = New System.Drawing.Size(98, 25)
         Me.btnConnect.TabIndex = 6
@@ -350,7 +350,7 @@ Partial Class frmTS800Sample
         'btnWifiSetting
         '
         Me.btnWifiSetting.Enabled = False
-        Me.btnWifiSetting.Location = New System.Drawing.Point(15, 34)
+        Me.btnWifiSetting.Location = New System.Drawing.Point(6, 33)
         Me.btnWifiSetting.Name = "btnWifiSetting"
         Me.btnWifiSetting.Size = New System.Drawing.Size(95, 25)
         Me.btnWifiSetting.TabIndex = 5
@@ -362,7 +362,7 @@ Partial Class frmTS800Sample
         Me.cbxBaudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxBaudrate.Font = New System.Drawing.Font("新細明體", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.cbxBaudrate.FormattingEnabled = True
-        Me.cbxBaudrate.Location = New System.Drawing.Point(350, 36)
+        Me.cbxBaudrate.Location = New System.Drawing.Point(389, 38)
         Me.cbxBaudrate.Name = "cbxBaudrate"
         Me.cbxBaudrate.Size = New System.Drawing.Size(84, 20)
         Me.cbxBaudrate.TabIndex = 4
@@ -370,7 +370,7 @@ Partial Class frmTS800Sample
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(295, 41)
+        Me.Label2.Location = New System.Drawing.Point(334, 39)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 12)
         Me.Label2.TabIndex = 3
@@ -379,7 +379,7 @@ Partial Class frmTS800Sample
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(116, 42)
+        Me.Label1.Location = New System.Drawing.Point(107, 39)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(30, 12)
         Me.Label1.TabIndex = 2
@@ -390,9 +390,9 @@ Partial Class frmTS800Sample
         Me.cbxPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxPort.Font = New System.Drawing.Font("新細明體", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.cbxPort.FormattingEnabled = True
-        Me.cbxPort.Location = New System.Drawing.Point(151, 36)
+        Me.cbxPort.Location = New System.Drawing.Point(143, 38)
         Me.cbxPort.Name = "cbxPort"
-        Me.cbxPort.Size = New System.Drawing.Size(130, 20)
+        Me.cbxPort.Size = New System.Drawing.Size(186, 20)
         Me.cbxPort.TabIndex = 1
         '
         'tabControl
@@ -1579,9 +1579,9 @@ Partial Class frmTS800Sample
         Me.chkDelimiterTab.AutoSize = True
         Me.chkDelimiterTab.Location = New System.Drawing.Point(248, 17)
         Me.chkDelimiterTab.Name = "chkDelimiterTab"
-        Me.chkDelimiterTab.Size = New System.Drawing.Size(42, 16)
+        Me.chkDelimiterTab.Size = New System.Drawing.Size(47, 16)
         Me.chkDelimiterTab.TabIndex = 3
-        Me.chkDelimiterTab.Text = "Tab"
+        Me.chkDelimiterTab.Text = "TAB"
         Me.chkDelimiterTab.UseVisualStyleBackColor = True
         '
         'btnGetDelimiter
@@ -1607,9 +1607,9 @@ Partial Class frmTS800Sample
         Me.chkDelimiterLine.AutoSize = True
         Me.chkDelimiterLine.Location = New System.Drawing.Point(125, 17)
         Me.chkDelimiterLine.Name = "chkDelimiterLine"
-        Me.chkDelimiterLine.Size = New System.Drawing.Size(45, 16)
+        Me.chkDelimiterLine.Size = New System.Drawing.Size(37, 16)
         Me.chkDelimiterLine.TabIndex = 1
-        Me.chkDelimiterLine.Text = "Line"
+        Me.chkDelimiterLine.Text = "LF"
         Me.chkDelimiterLine.UseVisualStyleBackColor = True
         '
         'chkDelimiterCR
@@ -1617,9 +1617,9 @@ Partial Class frmTS800Sample
         Me.chkDelimiterCR.AutoSize = True
         Me.chkDelimiterCR.Location = New System.Drawing.Point(6, 17)
         Me.chkDelimiterCR.Name = "chkDelimiterCR"
-        Me.chkDelimiterCR.Size = New System.Drawing.Size(64, 16)
+        Me.chkDelimiterCR.Size = New System.Drawing.Size(40, 16)
         Me.chkDelimiterCR.TabIndex = 0
-        Me.chkDelimiterCR.Text = "Carriage"
+        Me.chkDelimiterCR.Text = "CR"
         Me.chkDelimiterCR.UseVisualStyleBackColor = True
         '
         'GroupBox9
@@ -2049,6 +2049,7 @@ Partial Class frmTS800Sample
         Me.btnStopInventoryEx.Name = "btnStopInventoryEx"
         Me.btnStopInventoryEx.Size = New System.Drawing.Size(84, 23)
         Me.btnStopInventoryEx.TabIndex = 23
+        Me.btnStopInventoryEx.TabStop = False
         Me.btnStopInventoryEx.Text = "Stop"
         Me.btnStopInventoryEx.UseVisualStyleBackColor = True
         '
@@ -2058,6 +2059,7 @@ Partial Class frmTS800Sample
         Me.btnStartInventoryEx.Name = "btnStartInventoryEx"
         Me.btnStartInventoryEx.Size = New System.Drawing.Size(81, 23)
         Me.btnStartInventoryEx.TabIndex = 22
+        Me.btnStartInventoryEx.TabStop = False
         Me.btnStartInventoryEx.Text = "Start"
         Me.btnStartInventoryEx.UseVisualStyleBackColor = True
         '
@@ -2102,6 +2104,7 @@ Partial Class frmTS800Sample
         Me.btnStopInventory.Name = "btnStopInventory"
         Me.btnStopInventory.Size = New System.Drawing.Size(96, 23)
         Me.btnStopInventory.TabIndex = 4
+        Me.btnStopInventory.TabStop = False
         Me.btnStopInventory.Text = "Stop"
         Me.btnStopInventory.UseVisualStyleBackColor = True
         '
@@ -2111,6 +2114,7 @@ Partial Class frmTS800Sample
         Me.btnStartInventory.Name = "btnStartInventory"
         Me.btnStartInventory.Size = New System.Drawing.Size(101, 23)
         Me.btnStartInventory.TabIndex = 3
+        Me.btnStartInventory.TabStop = False
         Me.btnStartInventory.Text = "Start"
         Me.btnStartInventory.UseVisualStyleBackColor = True
         '

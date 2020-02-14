@@ -17,8 +17,7 @@ Public Class frmTS800Sample
     Private Sub frmInitial_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Text = "TS800 Sample" & " V" &
                     My.Application.Info.Version.Major & "." &
-                    My.Application.Info.Version.Minor & "." &
-                    My.Application.Info.Version.Build & "R" &
+                    My.Application.Info.Version.Minor & "R" &
                     My.Application.Info.Version.Revision
 
         _host = New Host()
@@ -352,7 +351,9 @@ Public Class frmTS800Sample
         lblRomVersion.Text = "ROM Version: "
     End Sub
 
+    Private m_bIsInventoryProcessing As Boolean
     Private Sub btnStartInventory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStartInventory.Click
+        Dim result As Boolean
         Dim tagPresetnedType As TagPresentedType
         ClearTagListView()
         tagPresetnedType = ComboBoxItem.GetCurrentItemValue(cbxInventory)
@@ -362,11 +363,26 @@ Public Class frmTS800Sample
             Case TagPresentedType.PC_EPC_TID
                 dgvTagList.Columns.Item(1).Visible = True
         End Select
-        _ts800.StartInventory(tagPresetnedType)
+        result = _ts800.StartInventory(tagPresetnedType)
+        If result Then
+            m_bIsInventoryProcessing = True
+            btnStartInventory.Enabled = False
+            btnStopInventory.Enabled = True
+            btnStartInventoryEx.Enabled = False
+            btnStopInventoryEx.Enabled = True
+        End If
     End Sub
 
-    Private Sub btnStopInventory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStopInventory.Click, btnStopInventoryEx.Click
-        _ts800.StopInventory()
+    Private Sub btnStopInventory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStopInventory.Click ', btnStopInventoryEx.Click
+        Dim result As Boolean
+        result = _ts800.StopInventory()
+        If result Then
+            m_bIsInventoryProcessing = False
+            btnStartInventory.Enabled = True
+            btnStopInventory.Enabled = False
+            btnStartInventoryEx.Enabled = True
+            btnStopInventoryEx.Enabled = False
+        End If
     End Sub
 
     Private Sub ClearTagListView()
@@ -1384,6 +1400,12 @@ Public Class frmTS800Sample
             tbBLEDeviceName.Text = name
         Else
             MsgBox("Get BLE Device Name Failed.")
+        End If
+    End Sub
+
+    Private Sub frmTS100Sample_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
+        If m_bIsInventoryProcessing Then
+            e.Handled = True
         End If
     End Sub
 End Class

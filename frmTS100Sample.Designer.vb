@@ -249,6 +249,7 @@ Partial Class frmTS100Sample
         Me.Label40 = New System.Windows.Forms.Label()
         Me.tbLockAccessPassword = New System.Windows.Forms.TextBox()
         Me.tpBLE = New System.Windows.Forms.TabPage()
+        Me.lblBLEROMVersion = New System.Windows.Forms.Label()
         Me.btnGetBLEName = New System.Windows.Forms.Button()
         Me.btnSetBLEName = New System.Windows.Forms.Button()
         Me.tbBLEDeviceName = New System.Windows.Forms.TextBox()
@@ -259,7 +260,6 @@ Partial Class frmTS100Sample
         Me.Label45 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.lblBLEROMVersion = New System.Windows.Forms.Label()
         Me.pnlConnect.SuspendLayout()
         Me.gbxGPIO.SuspendLayout()
         Me.tabControl.SuspendLayout()
@@ -337,7 +337,7 @@ Partial Class frmTS100Sample
         'lblSdkVersion
         '
         Me.lblSdkVersion.AutoSize = True
-        Me.lblSdkVersion.Location = New System.Drawing.Point(23, 12)
+        Me.lblSdkVersion.Location = New System.Drawing.Point(5, 12)
         Me.lblSdkVersion.Name = "lblSdkVersion"
         Me.lblSdkVersion.Size = New System.Drawing.Size(69, 12)
         Me.lblSdkVersion.TabIndex = 7
@@ -345,7 +345,7 @@ Partial Class frmTS100Sample
         '
         'btnConnect
         '
-        Me.btnConnect.Location = New System.Drawing.Point(460, 33)
+        Me.btnConnect.Location = New System.Drawing.Point(480, 33)
         Me.btnConnect.Name = "btnConnect"
         Me.btnConnect.Size = New System.Drawing.Size(98, 25)
         Me.btnConnect.TabIndex = 6
@@ -355,7 +355,7 @@ Partial Class frmTS100Sample
         'btnWifiSetting
         '
         Me.btnWifiSetting.Enabled = False
-        Me.btnWifiSetting.Location = New System.Drawing.Point(15, 34)
+        Me.btnWifiSetting.Location = New System.Drawing.Point(7, 34)
         Me.btnWifiSetting.Name = "btnWifiSetting"
         Me.btnWifiSetting.Size = New System.Drawing.Size(95, 25)
         Me.btnWifiSetting.TabIndex = 5
@@ -367,7 +367,7 @@ Partial Class frmTS100Sample
         Me.cbxBaudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxBaudrate.Font = New System.Drawing.Font("新細明體", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.cbxBaudrate.FormattingEnabled = True
-        Me.cbxBaudrate.Location = New System.Drawing.Point(350, 36)
+        Me.cbxBaudrate.Location = New System.Drawing.Point(390, 36)
         Me.cbxBaudrate.Name = "cbxBaudrate"
         Me.cbxBaudrate.Size = New System.Drawing.Size(84, 20)
         Me.cbxBaudrate.TabIndex = 4
@@ -375,7 +375,7 @@ Partial Class frmTS100Sample
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(295, 41)
+        Me.Label2.Location = New System.Drawing.Point(331, 40)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 12)
         Me.Label2.TabIndex = 3
@@ -384,7 +384,7 @@ Partial Class frmTS100Sample
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(116, 42)
+        Me.Label1.Location = New System.Drawing.Point(108, 40)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(30, 12)
         Me.Label1.TabIndex = 2
@@ -395,9 +395,9 @@ Partial Class frmTS100Sample
         Me.cbxPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxPort.Font = New System.Drawing.Font("新細明體", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.cbxPort.FormattingEnabled = True
-        Me.cbxPort.Location = New System.Drawing.Point(151, 36)
+        Me.cbxPort.Location = New System.Drawing.Point(143, 34)
         Me.cbxPort.Name = "cbxPort"
-        Me.cbxPort.Size = New System.Drawing.Size(130, 20)
+        Me.cbxPort.Size = New System.Drawing.Size(182, 20)
         Me.cbxPort.TabIndex = 1
         '
         'btnGetIO_State
@@ -1674,9 +1674,9 @@ Partial Class frmTS100Sample
         Me.chkDelimiterTab.AutoSize = True
         Me.chkDelimiterTab.Location = New System.Drawing.Point(248, 17)
         Me.chkDelimiterTab.Name = "chkDelimiterTab"
-        Me.chkDelimiterTab.Size = New System.Drawing.Size(42, 16)
+        Me.chkDelimiterTab.Size = New System.Drawing.Size(47, 16)
         Me.chkDelimiterTab.TabIndex = 3
-        Me.chkDelimiterTab.Text = "Tab"
+        Me.chkDelimiterTab.Text = "TAB"
         Me.chkDelimiterTab.UseVisualStyleBackColor = True
         '
         'btnGetDelimiter
@@ -1702,9 +1702,9 @@ Partial Class frmTS100Sample
         Me.chkDelimiterLine.AutoSize = True
         Me.chkDelimiterLine.Location = New System.Drawing.Point(125, 17)
         Me.chkDelimiterLine.Name = "chkDelimiterLine"
-        Me.chkDelimiterLine.Size = New System.Drawing.Size(45, 16)
+        Me.chkDelimiterLine.Size = New System.Drawing.Size(37, 16)
         Me.chkDelimiterLine.TabIndex = 1
-        Me.chkDelimiterLine.Text = "Line"
+        Me.chkDelimiterLine.Text = "LF"
         Me.chkDelimiterLine.UseVisualStyleBackColor = True
         '
         'chkDelimiterCR
@@ -1712,9 +1712,9 @@ Partial Class frmTS100Sample
         Me.chkDelimiterCR.AutoSize = True
         Me.chkDelimiterCR.Location = New System.Drawing.Point(6, 17)
         Me.chkDelimiterCR.Name = "chkDelimiterCR"
-        Me.chkDelimiterCR.Size = New System.Drawing.Size(64, 16)
+        Me.chkDelimiterCR.Size = New System.Drawing.Size(40, 16)
         Me.chkDelimiterCR.TabIndex = 0
-        Me.chkDelimiterCR.Text = "Carriage"
+        Me.chkDelimiterCR.Text = "CR"
         Me.chkDelimiterCR.UseVisualStyleBackColor = True
         '
         'GroupBox9
@@ -2029,6 +2029,7 @@ Partial Class frmTS100Sample
         Me.btnStopInventoryEx.Name = "btnStopInventoryEx"
         Me.btnStopInventoryEx.Size = New System.Drawing.Size(84, 23)
         Me.btnStopInventoryEx.TabIndex = 4
+        Me.btnStopInventoryEx.TabStop = False
         Me.btnStopInventoryEx.Text = "Stop"
         Me.btnStopInventoryEx.UseVisualStyleBackColor = True
         '
@@ -2038,6 +2039,7 @@ Partial Class frmTS100Sample
         Me.btnStartInventoryEx.Name = "btnStartInventoryEx"
         Me.btnStartInventoryEx.Size = New System.Drawing.Size(81, 23)
         Me.btnStartInventoryEx.TabIndex = 3
+        Me.btnStartInventoryEx.TabStop = False
         Me.btnStartInventoryEx.Text = "Start"
         Me.btnStartInventoryEx.UseVisualStyleBackColor = True
         '
@@ -2082,6 +2084,7 @@ Partial Class frmTS100Sample
         Me.btnStopInventory.Name = "btnStopInventory"
         Me.btnStopInventory.Size = New System.Drawing.Size(83, 23)
         Me.btnStopInventory.TabIndex = 4
+        Me.btnStopInventory.TabStop = False
         Me.btnStopInventory.Text = "Stop"
         Me.btnStopInventory.UseVisualStyleBackColor = True
         '
@@ -2091,6 +2094,7 @@ Partial Class frmTS100Sample
         Me.btnStartInventory.Name = "btnStartInventory"
         Me.btnStartInventory.Size = New System.Drawing.Size(81, 23)
         Me.btnStartInventory.TabIndex = 3
+        Me.btnStartInventory.TabStop = False
         Me.btnStartInventory.Text = "Start"
         Me.btnStartInventory.UseVisualStyleBackColor = True
         '
@@ -2100,7 +2104,9 @@ Partial Class frmTS100Sample
         Me.dgvTagList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clnEPC, Me.clnTID, Me.clnCount})
         Me.dgvTagList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvTagList.Location = New System.Drawing.Point(3, 3)
+        Me.dgvTagList.MultiSelect = False
         Me.dgvTagList.Name = "dgvTagList"
+        Me.dgvTagList.ReadOnly = True
         Me.dgvTagList.RowTemplate.Height = 24
         Me.dgvTagList.Size = New System.Drawing.Size(571, 497)
         Me.dgvTagList.TabIndex = 7
@@ -2689,19 +2695,28 @@ Partial Class frmTS100Sample
         Me.tpBLE.Text = "BluetoothLE"
         Me.tpBLE.UseVisualStyleBackColor = True
         '
-        'Button3
+        'lblBLEROMVersion
+        '
+        Me.lblBLEROMVersion.AutoSize = True
+        Me.lblBLEROMVersion.Location = New System.Drawing.Point(154, 13)
+        Me.lblBLEROMVersion.Name = "lblBLEROMVersion"
+        Me.lblBLEROMVersion.Size = New System.Drawing.Size(145, 12)
+        Me.lblBLEROMVersion.TabIndex = 23
+        Me.lblBLEROMVersion.Text = "Do Not Support Bluetooth LE"
+        '
+        'btnGetBLEName
         '
         Me.btnGetBLEName.Location = New System.Drawing.Point(464, 41)
-        Me.btnGetBLEName.Name = "Button3"
+        Me.btnGetBLEName.Name = "btnGetBLEName"
         Me.btnGetBLEName.Size = New System.Drawing.Size(107, 23)
         Me.btnGetBLEName.TabIndex = 22
         Me.btnGetBLEName.Text = "Get"
         Me.btnGetBLEName.UseVisualStyleBackColor = True
         '
-        'Button4
+        'btnSetBLEName
         '
         Me.btnSetBLEName.Location = New System.Drawing.Point(351, 41)
-        Me.btnSetBLEName.Name = "Button4"
+        Me.btnSetBLEName.Name = "btnSetBLEName"
         Me.btnSetBLEName.Size = New System.Drawing.Size(107, 23)
         Me.btnSetBLEName.TabIndex = 21
         Me.btnSetBLEName.Text = "Set"
@@ -2775,15 +2790,6 @@ Partial Class frmTS100Sample
         Me.TextBox1.Size = New System.Drawing.Size(100, 22)
         Me.TextBox1.TabIndex = 2
         '
-        'lblBLEROMVersion
-        '
-        Me.lblBLEROMVersion.AutoSize = True
-        Me.lblBLEROMVersion.Location = New System.Drawing.Point(154, 13)
-        Me.lblBLEROMVersion.Name = "lblBLEROMVersion"
-        Me.lblBLEROMVersion.Size = New System.Drawing.Size(145, 12)
-        Me.lblBLEROMVersion.TabIndex = 23
-        Me.lblBLEROMVersion.Text = "Do Not Support Bluetooth LE"
-        '
         'frmTS100Sample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -2792,6 +2798,7 @@ Partial Class frmTS100Sample
         Me.Controls.Add(Me.tabControl)
         Me.Controls.Add(Me.pnlConnect)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "frmTS100Sample"

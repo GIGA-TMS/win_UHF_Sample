@@ -1,4 +1,13 @@
-﻿v2.0.4 R0  2019/12/19
+﻿v2.5 R0  2020/01/18
+	* 增加BLE通訊介面
+	* 因應BLE Lib .NetFramework改為 4.5版本
+	* 變更版本號的命名方式(去掉原本第二位)
+
+v2.0.4 R1  2020/01/09
+	* UHF class
+		修正之前統一API名稱時，ReadTag功能帶入參數順序錯誤造成無法讀取失敗的問題
+
+v2.0.4 R0  2019/12/19
 	* Enumeration
 		變更列舉名稱 RfInputSensitivityLevel => RfSensitivityLevel
 		變更列舉 OutputInterface 內的成員名稱 HIDnVCOM => HID_N_VCOM

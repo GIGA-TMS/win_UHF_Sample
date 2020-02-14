@@ -17,8 +17,7 @@ Public Class frmTS100Sample
     Private Sub frmInitial_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Text = "TS100 Sample" & " V" &
                     My.Application.Info.Version.Major & "." &
-                    My.Application.Info.Version.Minor & "." &
-                    My.Application.Info.Version.Build & "R" &
+                    My.Application.Info.Version.Minor & "R" &
                     My.Application.Info.Version.Revision
 
         _host = New Host()
@@ -195,7 +194,7 @@ Public Class frmTS100Sample
                 oPortList.Add(.SelectedItem)
             End If
         End With
-        szBaudrate = cbxBaudrate.SelectedItem
+        szBaudrate = TryCast(cbxBaudrate.SelectedItem, String)
         iCount = oPortList.Count
         For I = 0 To (iCount - 1)
             With _ts100
@@ -207,28 +206,44 @@ Public Class frmTS100Sample
                 szPort = oPort.ToString()
                 bResult = False
                 If .Connect(szPort, szBaudrate) Then
-                    Dim szFirmware As String
-                    _ts100.StopInventory()
-                    szFirmware = _ts100.GetFirmwareVersion
-                    lblRomVersion.Text = "ROM Version: " & szFirmware
-                    Try
-                        cbxPort.SelectedItem = oPort
-                    Catch ex As Exception
-                        Debug.Print("Set CommPort Error: " & ex.ToString())
-                    End Try
                     bResult = True
-                    Exit For
-                ElseIf .IsOpenPortError Then
-                    Exit For
-                End If
-                If bResult Then
-                    Exit For
-                ElseIf .IsConnected Then
-                    MsgBox("Connect Failed! (" & szPort & ")")
-                    .Disconnect()
+                    Dim szFirmware As String
+                    If _ts100.StopInventory() Then
+                        szFirmware = _ts100.GetFirmwareVersion()
+                        If szFirmware IsNot Nothing Then
+                            lblRomVersion.Text = "ROM Version: " & szFirmware
+                        Else
+                            MsgBox("Get FW Version Failed.")
+                        End If
+                    Else
+                        MsgBox("Stop Inventory Failed.")
+                    End If
                 Else
                     MsgBox("Open Port Failed! (" & szPort & ")")
                 End If
+                'If .Connect(szPort, szBaudrate) Then
+                '    Dim szFirmware As String
+                '    _ts100.StopInventory()
+                '    szFirmware = _ts100.GetFirmwareVersion
+                '    lblRomVersion.Text = "ROM Version: " & szFirmware
+                '    Try
+                '        cbxPort.SelectedItem = oPort
+                '    Catch ex As Exception
+                '        Debug.Print("Set CommPort Error: " & ex.ToString())
+                '    End Try
+                '    bResult = True
+                '    Exit For
+                'ElseIf .IsOpenPortError Then
+                '    Exit For
+                'End If
+                'If bResult Then
+                '    Exit For
+                'ElseIf .IsConnected Then
+                '    MsgBox("Connect Failed! (" & szPort & ")")
+                '    .Disconnect()
+                'Else
+                '    MsgBox("Open Port Failed! (" & szPort & ")")
+                'End If
             End With
         Next I
 
@@ -239,10 +254,6 @@ Public Class frmTS100Sample
             btnWifiSetting.Enabled = True
             btnConnect.Text = "Disconnect"
             MsgBox("Connect to reader Successful.")
-            'bResult = _ts100.InitializeSettings()
-            'If bResult = False Then
-            '    MsgBox("Initialize Device Failed.")
-            'End If
         End If
         _host.NetDeviceSearcherEnabled = True
         Me.Cursor = cursor
@@ -354,7 +365,9 @@ Public Class frmTS100Sample
         lblRomVersion.Text = "ROM Version: "
     End Sub
 
+    Private m_bIsInventoryProcessing As Boolean
     Private Sub btnStartInventory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStartInventory.Click
+        Dim result As Boolean
         Dim tagPresetnedType As TagPresentedType
         ClearTagListView()
         tagPresetnedType = ComboBoxItem.GetCurrentItemValue(cbxInventory)
@@ -364,11 +377,26 @@ Public Class frmTS100Sample
             Case TagPresentedType.PC_EPC_TID
                 dgvTagList.Columns.Item(1).Visible = True
         End Select
-        _ts100.StartInventory(tagPresetnedType)
+        result = _ts100.StartInventory(tagPresetnedType)
+        If result Then
+            m_bIsInventoryProcessing = True
+            btnStartInventory.Enabled = False
+            btnStopInventory.Enabled = True
+            btnStartInventoryEx.Enabled = False
+            btnStopInventoryEx.Enabled = True
+        End If
     End Sub
 
     Private Sub btnStopInventory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStopInventory.Click, btnStopInventoryEx.Click
-        _ts100.StopInventory()
+        Dim result As Boolean
+        result = _ts100.StopInventory()
+        If result Then
+            m_bIsInventoryProcessing = False
+            btnStartInventory.Enabled = True
+            btnStopInventory.Enabled = False
+            btnStartInventoryEx.Enabled = True
+            btnStopInventoryEx.Enabled = False
+        End If
     End Sub
 
     Private Sub ClearTagListView()
@@ -641,10 +669,10 @@ Public Class frmTS100Sample
         Dim delimiterValue As New HashSet(Of PostDataDelimiter)
         Dim result As Boolean
         If chkDelimiterCR.Checked Then
-            delimiterValue.Add(PostDataDelimiter.Carriage)
+            delimiterValue.Add(PostDataDelimiter.CR)
         End If
         If chkDelimiterLine.Checked Then
-            delimiterValue.Add(PostDataDelimiter.Line)
+            delimiterValue.Add(PostDataDelimiter.LF)
         End If
         If chkDelimiterTab.Checked Then
             delimiterValue.Add(PostDataDelimiter.TAB)
@@ -665,9 +693,9 @@ Public Class frmTS100Sample
         chkDelimiterTab.Checked = False
         For Each delimiter As PostDataDelimiter In postDelimiterSet
             Select Case delimiter
-                Case PostDataDelimiter.Carriage
+                Case PostDataDelimiter.CR
                     chkDelimiterCR.Checked = True
-                Case PostDataDelimiter.Line
+                Case PostDataDelimiter.LF
                     chkDelimiterLine.Checked = True
                 Case PostDataDelimiter.TAB
                     chkDelimiterTab.Checked = True
@@ -1260,9 +1288,8 @@ Public Class frmTS100Sample
         nudTagRemoveThreshold.Value = tagRemoveThreshold
     End Sub
 
-
-
     Private Sub btnStartInventoryEx_Click(sender As Object, e As EventArgs) Handles btnStartInventoryEx.Click
+        Dim result As Boolean
         Dim tagDataEncodeTypeSet As HashSet(Of TagDataEncodeType)
         ClearTagListView()
         tagDataEncodeTypeSet = New HashSet(Of TagDataEncodeType)
@@ -1278,7 +1305,14 @@ Public Class frmTS100Sample
         If (chkInventoryExRAWDATA.Checked) Then
             tagDataEncodeTypeSet.Add(TagDataEncodeType.RAW_DATA)
         End If
-        _ts100.StartInventoryEx(tagDataEncodeTypeSet)
+        result = _ts100.StartInventoryEx(tagDataEncodeTypeSet)
+        If result Then
+            m_bIsInventoryProcessing = True
+            btnStartInventory.Enabled = False
+            btnStopInventory.Enabled = True
+            btnStartInventoryEx.Enabled = False
+            btnStopInventoryEx.Enabled = True
+        End If
     End Sub
 
     Private Sub btnSetInvnetoryRoundInterval_Click(sender As Object, e As EventArgs) Handles btnSetInvnetoryRoundInterval.Click
@@ -1411,6 +1445,12 @@ Public Class frmTS100Sample
             tbBLEDeviceName.Text = name
         Else
             MsgBox("Get BLE Device Name Failed.")
+        End If
+    End Sub
+
+    Private Sub frmTS100Sample_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
+        If m_bIsInventoryProcessing Then
+            e.Handled = True
         End If
     End Sub
 End Class
