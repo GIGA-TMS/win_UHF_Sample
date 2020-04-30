@@ -72,6 +72,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GIGATMS.UHF">
+      <HintPath>lib\GIGATMS.UHF.dll</HintPath>
+    </Reference>
+    <Reference Include="GIGATMS.UHFBle">
+      <HintPath>lib\GIGATMS.UHFBle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -174,12 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UHFLib\GIGATMS.UHF.vbproj">
-      <Project>{ad55dad3-70c7-4a57-8f3a-92b74b637c74}</Project>
-      <Name>GIGATMS.UHF</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
